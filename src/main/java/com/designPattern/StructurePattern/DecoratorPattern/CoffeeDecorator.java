@@ -13,5 +13,8 @@ public abstract class CoffeeDecorator implements MakeCoffee {
         this.makeCoffee = makeCoffee;
     }
 
-
+    @Override
+    public String makeCoffee() {
+        return "extend coffee";
+    }
 }
