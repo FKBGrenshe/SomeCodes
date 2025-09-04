@@ -54,4 +54,18 @@ public class SortTest {
         System.out.println(Arrays.toString(unsortedArray));
     }
 
+    @Test
+    void InsertionSortTest(){
+        int[] unsortedArray = RangeUtil.newUnsortedArray(100);
+        System.out.println(Arrays.toString(unsortedArray));
+
+        InsertionSort insertionSort = new InsertionSort();
+        int[] sortedArray = insertionSort.sort(unsortedArray,0);
+
+        Assertions.assertTrue(RangeUtil.checkIfSorted(sortedArray));
+
+        System.out.println("array is sorted?"+RangeUtil.checkIfSorted(sortedArray));
+        System.out.println(Arrays.toString(unsortedArray));
+    }
+
 }
