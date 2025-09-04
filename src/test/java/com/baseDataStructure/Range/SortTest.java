@@ -68,4 +68,32 @@ public class SortTest {
         System.out.println(Arrays.toString(unsortedArray));
     }
 
+    @Test
+    void ShellSortTest(){
+        int[] unsortedArray = RangeUtil.newUnsortedArray(100);
+        System.out.println(Arrays.toString(unsortedArray));
+
+        ShellSort shellSort = new ShellSort();
+        int[] sortedArray = shellSort.sort(unsortedArray);
+
+        Assertions.assertTrue(RangeUtil.checkIfSorted(sortedArray));
+
+        System.out.println("array is sorted?"+RangeUtil.checkIfSorted(sortedArray));
+        System.out.println(Arrays.toString(unsortedArray));
+    }
+
+    @Test
+    void MergeSortTest(){
+        int[] unsortedArray = RangeUtil.newUnsortedArray(10);
+        System.out.println(Arrays.toString(unsortedArray));
+
+        MergeSort mergeSort = new MergeSort();
+        int[] sortedArray = mergeSort.sort(unsortedArray);
+
+
+        System.out.println("array is sorted?"+RangeUtil.checkIfSorted(sortedArray));
+        System.out.println(Arrays.toString(unsortedArray));
+        Assertions.assertTrue(RangeUtil.checkIfSorted(sortedArray));
+    }
+
 }
