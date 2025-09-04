@@ -40,4 +40,18 @@ public class SortTest {
         System.out.println(Arrays.toString(unsortedArray));
     }
 
+    @Test
+    void HeapSortTest(){
+        int[] unsortedArray = RangeUtil.newUnsortedArray(100);
+        System.out.println(Arrays.toString(unsortedArray));
+
+        HeapSort heapSort = new HeapSort();
+        int[] sortedArray = heapSort.sort(unsortedArray);
+
+        Assertions.assertTrue(RangeUtil.checkIfSorted(sortedArray));
+
+        System.out.println("array is sorted?"+RangeUtil.checkIfSorted(sortedArray));
+        System.out.println(Arrays.toString(unsortedArray));
+    }
+
 }
