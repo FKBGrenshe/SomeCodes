@@ -1,5 +1,7 @@
 package com.baseDataStructure.Range;
 
+import static com.baseDataStructure.Range.SortedUtil.exchange;
+
 /**
  * @Author: Bingyu Chen
  * @CreateTime: 2025-09-04
@@ -26,12 +28,5 @@ public class BubbleSort {
         }
         return unsortedArray;
     }
-
-    private void exchange(int[] array, int i, int j){
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-
 
 }
