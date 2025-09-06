@@ -1,5 +1,6 @@
 package com.baseDataStructure.Range;
 
+import com.baseDataStructure.Range.MergeSort.MergeSortTopDown;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -87,7 +88,7 @@ public class SortTest {
         int[] unsortedArray = RangeUtil.newUnsortedArray(10);
         System.out.println(Arrays.toString(unsortedArray));
 
-        MergeSort mergeSort = new MergeSort();
+        MergeSortTopDown mergeSort = new MergeSortTopDown();
         int[] sortedArray = mergeSort.sort(unsortedArray);
 
 

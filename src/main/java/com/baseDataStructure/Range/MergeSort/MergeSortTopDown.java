@@ -1,13 +1,11 @@
-package com.baseDataStructure.Range;
-
-import java.util.Arrays;
+package com.baseDataStructure.Range.MergeSort;
 
 /**
  * @Author: Bingyu Chen
  * @CreateTime: 2025-09-04
- * @Description: 归并排序
+ * @Description: 归并排序 递归 自上而下
  */
-public class MergeSort {
+public class MergeSortTopDown {
 
 
 
@@ -18,7 +16,6 @@ public class MergeSort {
     }
 
     private void split(int[] array, int left, int right, int[] temp){
-//        int[] arraynew = Arrays.copyOfRange(array, left, right + 1);
         // 治：此处有序了
         if (left == right){
             // 仅有一个数据，肯定是有序的，返回
