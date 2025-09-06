@@ -9,7 +9,7 @@ public class MergeSortTopDown {
 
 
 
-    int[] sort(int[] array){
+    public int[] sort(int[] array){
         int[] temp = new int[array.length];
         split(array,0,array.length-1, temp);
         return array;
