@@ -1,5 +1,7 @@
 package com.baseDataStructure.GraphStructure;
 
+import com.baseDataStructure.GraphStrucuture.BFS;
+import com.baseDataStructure.GraphStrucuture.DFS;
 import com.baseDataStructure.GraphStrucuture.Edge;
 import com.baseDataStructure.GraphStrucuture.Vertex;
 import org.junit.jupiter.api.Test;
@@ -17,16 +19,37 @@ public class baseGraphConstructTest {
 
     @Test
     void createAGraph(){
+
+
+        draw.printGraph(createAGraphAndReturn());
+    }
+
+
+    @Test
+    void DFStest(){
+        List graph = createAGraphAndReturn();
+        DFS.search((Vertex) graph.get(0));
+    }
+
+    @Test
+    void BFStest(){
+        List graph = createAGraphAndReturn();
+        BFS.search((Vertex) graph.get(0));
+    }
+
+
+
+    List<Vertex> createAGraphAndReturn(){
         Vertex a = new Vertex("A");
         Vertex b = new Vertex("B");
         Vertex c = new Vertex("C");
         Vertex d = new Vertex("D");
 
         a.edges = List.of(new Edge(b), new Edge(c));
-        b.edges = List.of(new Edge(c));
+        b.edges = List.of(new Edge(d));
         c.edges = List.of(new Edge(d));
 
-        draw.printGraph(List.of(a,b,c,d));
+        return List.of(a,b,c,d);
     }
 
 }
