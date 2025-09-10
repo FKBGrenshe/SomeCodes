@@ -1,6 +1,7 @@
 package com.baseDataStructure.Range;
 
 import com.baseDataStructure.Range.MergeSort.MergeSortTopDown;
+import com.baseDataStructure.Range.QuickSort.QuickSortHoare;
 import com.baseDataStructure.Range.QuickSort.QuickSortLomuto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -106,6 +107,19 @@ public class SortTest {
         System.out.println(Arrays.toString(unsortedArray));
 
         QuickSortLomuto.sort(unsortedArray);
+
+
+        System.out.println("array is sorted?"+RangeUtil.checkIfSorted(unsortedArray));
+        System.out.println(Arrays.toString(unsortedArray));
+    }
+
+    @Test
+    void QuickSortHoareTest(){
+//        int[] unsortedArray = RangeUtil.newUnsortedArray(9);
+        int[] unsortedArray = {1,7,9,8,2,6,5,4,3};
+        System.out.println(Arrays.toString(unsortedArray));
+
+        QuickSortHoare.sort(unsortedArray);
 
 
         System.out.println("array is sorted?"+RangeUtil.checkIfSorted(unsortedArray));
