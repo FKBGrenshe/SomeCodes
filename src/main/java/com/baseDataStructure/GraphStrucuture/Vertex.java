@@ -12,7 +12,10 @@ public class Vertex {
     // 顶点名字
     String name;
     // 顶点的边的集合
-    List<Edge> edges;
+    public List<Edge> edges;
+
+    // 辅助遍历属性：表明是否被访问过
+    boolean visited = false;
 
     public Vertex(String name) {
         this.name = name;

@@ -8,9 +8,9 @@ package com.baseDataStructure.GraphStrucuture;
  */
 public class Edge {
 
-    Vertex linked;
+    public Vertex linked;
     // 边权重
-    int weeight;
+    public int weight;
 
     public Edge(Vertex linked) {
         this(linked,1);
@@ -18,6 +18,6 @@ public class Edge {
 
     public Edge(Vertex linked, int weeight) {
         this.linked = linked;
-        this.weeight = weeight;
+        this.weight = weeight;
     }
 }
