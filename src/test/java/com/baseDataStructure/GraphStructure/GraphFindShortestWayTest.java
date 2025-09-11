@@ -1,5 +1,6 @@
 package com.baseDataStructure.GraphStructure;
 
+import com.baseDataStructure.GraphStrucuture.BellmanFord;
 import com.baseDataStructure.GraphStrucuture.Dijkstra;
 import com.baseDataStructure.GraphStrucuture.Edge;
 import com.baseDataStructure.GraphStrucuture.Vertex;
@@ -25,6 +26,13 @@ public class GraphFindShortestWayTest {
     void DijkstraWithPrioirtyQueueTest(){
         List<Vertex> graph = buildGraph();
         Dijkstra.dijkstraWithPriorityQueue(graph,graph.get(0));
+    }
+
+
+    @Test
+    void BellmanFordTest(){
+        List<Vertex> graph = buildGraphWithNegativeWeightEdge();
+        BellmanFord.bellmanFord(graph,graph.get(0));
     }
 
 
@@ -68,4 +76,26 @@ public class GraphFindShortestWayTest {
         return List.of(v1,v2,v3,v4,v5,v6);
 
     }
+
+    private static List<Vertex> buildGraphWithNegativeWeightEdge(){
+        Vertex v1 = new Vertex("v1");
+        Vertex v2 = new Vertex("v2");
+        Vertex v3 = new Vertex("v3");
+        Vertex v4 = new Vertex("v4");
+
+        v1.edges = List.of(
+                new Edge(v2, 2),
+                new Edge(v3,1)
+        );
+
+        v2.edges = List.of(new Edge(v3,-2));
+        v3.edges = List.of(new Edge(v4, 1));
+        v4.edges = List.of();
+
+
+        return List.of(v1,v2,v3,v4);
+
+    }
+
+
 }
