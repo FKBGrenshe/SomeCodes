@@ -73,10 +73,17 @@ public class TopologicalSort {
     }
 
     private static void DFS4TopoSort(Vertex vertex, LinkedList<String> stack){
-        if (vertex.visitStatus == 2){
+        if (vertex.getVisitStatus() == 2){
             // 该顶点已经被访问过了
             return;
         }
+
+        if (vertex.getVisitStatus()==1){
+            // 因为使用深度优先搜索遍历，所以上一次递归前搜索的顶点和当前顶点是具有“层级or祖父辈”关系的，因此后面节点访问到某一顶点status==1，说明该顶点是前面的某一祖父辈节点，因此“顺序逆向”了，因此存在环
+            throw new RuntimeException("出现环，环位于"+vertex.name);
+        }
+        // 正在处理当前顶点
+        vertex.setVisitStatus(1);
 
         // 找到相邻顶点，再次DFS
         if (vertex.edges != null && !vertex.edges.isEmpty()){
