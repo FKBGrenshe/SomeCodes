@@ -1,9 +1,6 @@
 package com.baseDataStructure.GraphStructure;
 
-import com.baseDataStructure.GraphStrucuture.BFS;
-import com.baseDataStructure.GraphStrucuture.DFS;
-import com.baseDataStructure.GraphStrucuture.Edge;
-import com.baseDataStructure.GraphStrucuture.Vertex;
+import com.baseDataStructure.GraphStrucuture.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -35,6 +32,12 @@ public class baseGraphConstructTest {
     void BFStest(){
         List graph = createAGraphAndReturn();
         BFS.search((Vertex) graph.get(0));
+    }
+
+    @Test
+    void TopoSortTest(){
+        List<Vertex> graph = createAGraphAndReturn();
+        TopologicalSort.search(graph);
     }
 
 

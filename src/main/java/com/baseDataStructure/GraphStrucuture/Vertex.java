@@ -14,6 +14,10 @@ public class Vertex {
     // 顶点的边的集合
     public List<Edge> edges;
 
+    // 入度
+    int inDegree = 0;
+
+
     // 辅助遍历属性：表明是否被访问过
     boolean visited = false;
 
