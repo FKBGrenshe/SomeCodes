@@ -1,6 +1,7 @@
 package com.baseDataStructure.GraphStrucuture;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: Bingyu Chen
@@ -47,5 +48,18 @@ public class Vertex {
     @Override
     public String toString() {
         return name+"("+dist+")";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vertex vertex = (Vertex) o;
+        return Objects.equals(name, vertex.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }
