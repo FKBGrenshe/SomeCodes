@@ -41,6 +41,13 @@ public class baseGraphConstructTest {
     }
 
 
+    @Test
+    void TopoSortByDFSTest(){
+        List<Vertex> graph = createAGraphAndReturn();
+        TopologicalSort.searchByDFS(graph);
+    }
+
+
 
     List<Vertex> createAGraphAndReturn(){
         Vertex a = new Vertex("A");

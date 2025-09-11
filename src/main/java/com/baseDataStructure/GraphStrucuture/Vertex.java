@@ -20,6 +20,8 @@ public class Vertex {
 
     // 辅助遍历属性：表明是否被访问过
     boolean visited = false;
+    // 详细访问状态: 0-未被访问，1-访问中，2-访问过 （用在拓扑排序）
+    int visitStatus = 0;
 
     public Vertex(String name) {
         this.name = name;
@@ -27,5 +29,13 @@ public class Vertex {
 
     public String getName() {
         return name;
+    }
+
+    public int getVisitStatus() {
+        return visitStatus;
+    }
+
+    public void setVisitStatus(int visitStatus) {
+        this.visitStatus = visitStatus;
     }
 }
