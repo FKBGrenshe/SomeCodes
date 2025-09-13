@@ -13,12 +13,15 @@ import java.util.Arrays;
 public class DisjoinSet {
 
     int[] s;
+    int[] size; // 记录每个集合的顶点个数
 
     public DisjoinSet(int size){
         s = new int[size];
+        this.size = new int[size];
         for (int i = 0; i < s.length; i++) {
             // 一开始，每个顶点仅与自己有关
             s[i] = i;
+            this.size[i] = 1;
         }
     }
 
@@ -28,8 +31,8 @@ public class DisjoinSet {
             // 当前节点的老大就是老大索引
             return x;
         } else{
-            // 当前节点的老大不是老大索引
-            return find(s[x]);
+            // 当前节点的老大不是老大索引 -- 寻找老大，并将自身也更新为老大，然后返回老大
+            return s[x] = find(s[x]);
         }
     }
 
@@ -40,7 +43,14 @@ public class DisjoinSet {
      * @param y
      */
     public void union(int x, int y){
-        s[y] = x;
+
+        // 让集合中顶点个数最多的成为新老大
+        int boss = size[y] > size[x] ? y : x;
+        // 更新老大集合的顶点个数
+        size[boss] = size[y] + size[x];
+        // 让失败的老大指向新老大
+        s[y] = boss;
+        s[x] = boss;
     }
 
     @Override
