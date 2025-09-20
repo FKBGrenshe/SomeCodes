@@ -33,6 +33,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!--查看对象的内存布局-->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.17</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
