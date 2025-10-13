@@ -21,7 +21,6 @@ public class DoubleCheckedLockingSingletonBasedOnVolatile {
 
     // 外部得到该单例对象
     public DoubleCheckedLockingSingletonBasedOnVolatile getSingleton(){
-
         if (singleton == null){
             synchronized (DoubleCheckedLockingSingletonBasedOnVolatile.class){
                 if (singleton == null){
@@ -29,8 +28,6 @@ public class DoubleCheckedLockingSingletonBasedOnVolatile {
                 }
             }
         }
-
         return singleton;
     }
-
 }
