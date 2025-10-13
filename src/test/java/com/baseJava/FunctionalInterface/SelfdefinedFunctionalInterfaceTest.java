@@ -1,6 +1,9 @@
 package com.baseJava.FunctionalInterface;
 
 import com.baseJava.FuctionalInterface.SelfdefineFunctionalInterface;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -17,6 +20,10 @@ public class SelfdefinedFunctionalInterfaceTest {
         SelfdefineFunctionalInterface testInterface = System.out::println;
         testInterface.sayMessage(message);
 
+    }
+    @Test
+    void testForCodespace(){
+        System.out.println("这是给codespace提供的特殊方法");
     }
 
 }
