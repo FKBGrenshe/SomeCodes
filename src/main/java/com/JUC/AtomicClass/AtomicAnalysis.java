@@ -2,6 +2,7 @@ package com.JUC.AtomicClass;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerArray;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @Author: Bingyu Chen
@@ -62,7 +63,26 @@ public class AtomicAnalysis {
         }
     }
 
-//    public void testA
+    public void testAtomicReference(){
+        AtomicReference<Person> ar = new AtomicReference<>(new Person("xiaomei", 22));
+        // 打印初始值
+        System.out.println("initial person: " + ar.get().toString());
+
+        // 更新值
+        Person updatePerson = new Person("Daisy", 20);
+        ar.compareAndSet(ar.get(), updatePerson);
+
+        // 打印更新值
+        System.out.println("update person: " + ar.get().toString());
+
+        // 尝试再次更新
+        Person anotherUpdatePerson = new Person("John", 30);
+        boolean isUpdated = ar.compareAndSet(updatePerson, anotherUpdatePerson);
+
+        // 打印是否更新成功及最终值
+        System.out.println("Second Update Success: " + isUpdated);
+        System.out.println("Final Person: " + ar.get().toString());
+    }
 
 
     public static void main(String[] args) {
@@ -70,7 +90,27 @@ public class AtomicAnalysis {
         obj.testAtomicInteger();
         System.out.println("------------------------------------------------------------------");
         obj.testAtomicIntegerArray();
+        System.out.println("------------------------------------------------------------------");
+        obj.testAtomicReference();
 
     }
 
+}
+
+class Person{
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
