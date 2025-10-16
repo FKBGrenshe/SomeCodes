@@ -1,8 +1,6 @@
 package com.JUC.AtomicClass;
 
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicIntegerArray;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.*;
 
 /**
  * @Author: Bingyu Chen
@@ -84,22 +82,115 @@ public class AtomicAnalysis {
         System.out.println("Final Person: " + ar.get().toString());
     }
 
+    public void testAtomicStampedReference(){
+        AtomicStampedReference<String> asr = new AtomicStampedReference<>("SnailClimb", 1);
+
+        int[] initialStamp = new int[1];
+        String initialRef = asr.get(initialStamp);
+        System.out.println("Initial Reference: " + initialRef + ", Initial Stamp: " + initialStamp[0]);
+
+        // 更新值 和 版本号
+        int oldStamp = initialStamp[0];
+        String oldRef = initialRef;
+        String newRef = "Daisy";
+        int newStamp = oldStamp + 1;
+
+        boolean isUpdated = asr.compareAndSet(oldRef, newRef, oldStamp, newStamp);
+        System.out.println("Update Success" + isUpdated);
+
+        // 打印更新后的值和版本号
+        int[] updatedStamp = new int[1];
+        String updatedRef = asr.get(updatedStamp);
+        System.out.println("Updated Reference: " + updatedRef + ", Updated Stamp: " + updatedStamp[0]);
+
+        // 尝试用错误的版本号更新
+        boolean isUpdatedWithWrongStamp = asr.compareAndSet(newRef, "John", oldStamp, newStamp + 1);
+        System.out.println("Update with Wrong Stamp Success: " + isUpdatedWithWrongStamp);
+
+        // 打印最终的值和版本号
+        int[] finalStamp = new int[1];
+        String finalRef = asr.get(finalStamp);
+        System.out.println("Final Reference: " + finalRef + ", Final Stamp: " + finalStamp[0]);
+    }
+
+    public void testAtomicMarkableReference(){
+        // 创建一个 AtomicMarkableReference 对象，初始值为 "SnailClimb"，初始标记为 false
+        AtomicMarkableReference<String> amr = new AtomicMarkableReference<>("SnailClimb", false);
+
+        // 打印初始值和标记
+        boolean[] initialMark = new boolean[1];
+        String initialRef = amr.get(initialMark);
+        System.out.println("Initial Reference: " + initialRef + ", Initial Mark: " + initialMark[0]);
+
+        // 更新值和标记
+        String oldRef = initialRef;
+        String newRef = "Daisy";
+        boolean oldMark = initialMark[0];
+        boolean newMark = true;
+
+        boolean isUpdated = amr.compareAndSet(oldRef, newRef, oldMark, newMark);
+        System.out.println("Update Success: " + isUpdated);
+
+        // 打印更新后的值和标记
+        boolean[] updatedMark = new boolean[1];
+        String updatedRef = amr.get(updatedMark);
+        System.out.println("Updated Reference: " + updatedRef + ", Updated Mark: " + updatedMark[0]);
+
+        // 尝试用错误的标记更新
+        boolean isUpdatedWithWrongMark = amr.compareAndSet(newRef, "John", oldMark, !newMark);
+        System.out.println("Update with Wrong Mark Success: " + isUpdatedWithWrongMark);
+
+        // 打印最终的值和标记
+        boolean[] finalMark = new boolean[1];
+        String finalRef = amr.get(finalMark);
+        System.out.println("Final Reference: " + finalRef + ", Final Mark: " + finalMark[0]);
+    }
+
+    public void testAtomicIntegerFieldUpdater(){
+        // 创建 AtomicIntegerFieldUpdater 对象
+        AtomicIntegerFieldUpdater<Person> ageUpdater = AtomicIntegerFieldUpdater.newUpdater(Person.class, "age");
+        // 创建 Person 对象 Person
+        Person person = new Person("SnailClimb", 22);
+        // 打印初始值
+        System.out.println("Initial Person: " + person);
+        // 更新 age 字段
+        ageUpdater.incrementAndGet(person);
+        // 自增
+        System.out.println("After Increment: " + person);
+        ageUpdater.addAndGet(person, 5);
+        // 增加 5
+        System.out.println("After Adding 5: " + person);
+        ageUpdater.compareAndSet(person, 28, 30);
+        // 如果当前值是 28，则设置为 30
+        System.out.println("After Compare and Set (28 to 30): " + person);
+        // 尝试使用错误的比较值进行更新
+        boolean isUpdated = ageUpdater.compareAndSet(person, 28, 35);
+        // 这次应该失败
+        System.out.println("Compare and Set (28 to 35) Success: " + isUpdated);
+        System.out.println("Final Person: " + person);
+    }
+
 
     public static void main(String[] args) {
         AtomicAnalysis obj = new AtomicAnalysis();
-        obj.testAtomicInteger();
+//        obj.testAtomicInteger();
         System.out.println("------------------------------------------------------------------");
-        obj.testAtomicIntegerArray();
+//        obj.testAtomicIntegerArray();
         System.out.println("------------------------------------------------------------------");
         obj.testAtomicReference();
-
+        System.out.println("------------------------------------------------------------------");
+        obj.testAtomicStampedReference();
+        System.out.println("------------------------------------------------------------------");
+        obj.testAtomicMarkableReference();
+        System.out.println("------------------------------------------------------------------");
+        obj.testAtomicIntegerFieldUpdater();
     }
 
 }
 
 class Person{
-    private String name;
-    private int age;
+    String name;
+    volatile int age;
 
     public Person(String name, int age) {
         this.name = name;
