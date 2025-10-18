@@ -44,7 +44,7 @@ public class Memory {
             System.out.println("产生缺页中断："+pageId);
             System.out.println("当前内存中页面："+frames.toString());
             // 换入换出页面
-            Page removePage = policy.apply(this.pages,pageId);
+            Page removePage = policy.apply(this.frames,pageId);
             removePage.timeZero();
             int removeIndex = frames.indexOf(removePage);
             frames.set(removeIndex,needPage);
@@ -116,6 +116,11 @@ public class Memory {
             // 进行当前访问
             putPage(visitPages[i]);
         }
+    }
+
+    public static void main(String[] args) {
+        Memory memory = new Memory(3);
+        memory.start();
     }
 
 }
