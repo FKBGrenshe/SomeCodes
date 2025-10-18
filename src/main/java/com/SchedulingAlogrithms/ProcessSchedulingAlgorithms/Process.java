@@ -1,5 +1,8 @@
 package com.SchedulingAlogrithms.ProcessSchedulingAlgorithms;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * @Author: Bingyu Chen
  * @CreateTime: 2025-10-18
@@ -37,6 +40,32 @@ class Process {
 
     public void run(){
         System.out.println("running..." + this.toString());
+    }
+
+
+    /**
+     * 随机生成一批进程对象
+     * @param count 进程数量
+     * @return ArrayList<Process>
+     */
+    public static ArrayList<Process> processArrayList(int count) {
+        ArrayList<Process> processes = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 1; i <= count; i++) {
+            String id = "P" + i;
+            int arrivalTime = random.nextInt(10);      // 到达时间 [0, 9]
+            int burstTime = random.nextInt(8) + 1;     // 执行时间 [1, 8]
+            int priority = random.nextInt(5) + 1;      // 优先级 [1, 5]
+            processes.add(new Process(id, arrivalTime, burstTime, priority));
+        }
+
+        System.out.println("已生成以下进程");
+        for (Process p : processes) {
+            System.out.println(p.toString());
+        }
+        System.out.println("生成完成");
+        return processes;
     }
 
 }
