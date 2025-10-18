@@ -18,9 +18,8 @@ public class Memory {
     public PageRepalcementPolicy policy;   // 置换策略
     public ArrayList<Page> pages;          // 磁盘中的所有会访问到的页面
 
-    public void setPolicy(PageRepalcementPolicy policy, ArrayList<Page> pages) {
+    public void setPolicy(PageRepalcementPolicy policy) {
         this.policy = policy;
-        this.pages = pages;
     }
 
     public Memory(int capacity) {
@@ -106,6 +105,7 @@ public class Memory {
     public void start(){
         int totalPageCount = 10;
         ArrayList<Page> totalPages = Page.totalPages(totalPageCount);
+        this.pages = totalPages;
         int[] visitPages = Page.visitPages(30,totalPages);
 
         for (int i = 0; i < visitPages.length; i++) {
@@ -120,6 +120,7 @@ public class Memory {
 
     public static void main(String[] args) {
         Memory memory = new Memory(3);
+        memory.setPolicy(new FIFO());
         memory.start();
     }
 
