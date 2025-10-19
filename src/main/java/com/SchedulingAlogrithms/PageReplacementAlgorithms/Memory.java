@@ -77,13 +77,19 @@ public class Memory {
         Memory FIFOmemory = new Memory(capacity, new FIFO(capacity));
         // 创建 LRU策略
         Memory LRUmemory = new Memory(capacity, new LRU(capacity));
+        // 创建 CLOCK 策略
+        Memory CLOCKmemory = new Memory(capacity, new CLock(capacity));
+
         // 模拟访问序列
         int[] accessSeq = Page.visitPages(3000, Page.totalPages(1500));
         System.out.println("模拟访问序列:" + Arrays.toString(accessSeq));
         double FIFOpageFaultRate = FIFOmemory.simulate(accessSeq);
         double LRUpageFaultRate = LRUmemory.simulate(accessSeq);
+        double CLOCKpageFaultRate = CLOCKmemory.simulate(accessSeq);
 
         System.out.println("FIFO - "+FIFOpageFaultRate);
         System.out.println("LRU - "+LRUpageFaultRate);
+        System.out.println("CLOCK - "+CLOCKpageFaultRate);
+
     }
 }
