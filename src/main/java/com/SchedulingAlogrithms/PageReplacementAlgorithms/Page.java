@@ -74,4 +74,25 @@ public class Page {
         return visits;
     }
 
+    public static int[] visitPages(int visitNumber, int maxPageId){
+        int[] visits = new int[visitNumber];
+        Random random = new Random();
+
+        // 模拟“局部性原理”：短时间内集中访问少量页面
+        int currentIndex = random.nextInt(maxPageId);
+        for (int i = 0; i < visitNumber; i++) {
+            // 每隔一段时间，有一定概率切换访问区域
+            if (i % 3 == 0 && random.nextDouble() < 0.5) {
+                currentIndex = random.nextInt(maxPageId);
+            }
+            // 模拟在局部窗口中的访问
+//            int localOffset = random.nextInt(30) - 15; // -2, -1, 0, 1, 2
+            int localOffset = random.nextInt(3) - 1; // -2, -1, 0, 1, 2
+            int pageIndex = (currentIndex + localOffset + maxPageId) % maxPageId;
+            visits[i] = pageIndex;
+        }
+
+        return visits;
+    }
+
 }
