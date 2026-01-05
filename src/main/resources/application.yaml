@@ -5,3 +5,15 @@ spring:
       password: lovehst
       port: 6379
       host: 8.130.90.88
+  datasource:
+    url: jdbc:mysql://8.130.90.88:8430?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+    username: cby
+    password: Cby_123321
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# Mysql
+#数据源连接信息
+#datasource:
+#  username: cby
+#  password: Cby_123321
+#  url: jdbc:mysql://8.130.90.88:8430?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+#  driver-class-name: com.mysql.cj.jdbc.Driver
