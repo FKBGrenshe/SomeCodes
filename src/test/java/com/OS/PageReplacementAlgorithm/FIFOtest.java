@@ -6,4 +6,7 @@ package com.OS.PageReplacementAlgorithm;
  * @Description: FIFO测试类
  */
 public class FIFOtest {
+
+
+
 }
