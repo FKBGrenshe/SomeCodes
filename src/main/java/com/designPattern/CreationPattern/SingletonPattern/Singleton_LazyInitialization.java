@@ -24,7 +24,7 @@ public class Singleton_LazyInitialization {
     }
 
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        /*// 反射破坏单例
+        // 反射破坏单例
         // 获取空参构造方法
         Constructor<Singleton_LazyInitialization> declaredConstructor = Singleton_LazyInitialization.class.getDeclaredConstructor(null);
         // 设置强制访问
@@ -34,7 +34,6 @@ public class Singleton_LazyInitialization {
         Singleton_LazyInitialization instance_2 = declaredConstructor.newInstance();
 
         System.out.println("two Object .equal = " + Objects.equals(instance_1,instance_2));
-*/
 
         for (int i = 0; i < 3; i++) {
             new Thread(() -> {
