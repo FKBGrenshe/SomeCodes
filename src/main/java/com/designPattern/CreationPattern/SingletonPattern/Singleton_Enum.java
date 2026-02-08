@@ -6,11 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 public enum Singleton_Enum {
     INSTANCE;
 
-    public void doSomething(){
+    public void doSomething() {
         System.out.println("do some thing...");
     }
 
-    public static Singleton_Enum getInstance(){
+    public static Singleton_Enum getInstance() {
         return INSTANCE;
     }
 
@@ -20,7 +20,7 @@ public enum Singleton_Enum {
 
         // 多线程尝试
         for (int i = 0; i < 3; i++) {
-            new Thread(()->{
+            new Thread(() -> {
                 System.out.println("多线程创建的单例：" +
                         Singleton_Enum.getInstance());
             }).start();
